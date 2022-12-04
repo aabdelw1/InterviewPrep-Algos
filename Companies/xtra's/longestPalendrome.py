@@ -19,6 +19,6 @@ def longestPalindrome(self, s: str) -> str:
             if len(curr) > len(longest):
                 longest = curr
             left = left - 1
-            right = right +1
+            right = right + 1
     return longest
                         

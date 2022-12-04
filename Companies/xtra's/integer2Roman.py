@@ -2,6 +2,8 @@ def intToRoman(num):
   numbers = [1,4,5,9,10,40,50,90,100,400,500,900,1000]
   symbols = ["I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M"]
   
+
+  num = 3400
   i = 12
   roman =""
   while num > 0:

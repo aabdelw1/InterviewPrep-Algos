@@ -1,0 +1,65 @@
+
+
+'''Greedy Algorithms Bootcamp'''
+
+
+'''
+Text Justification
+
+
+Given an array of strings words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.
+You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters.
+Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned 
+more spaces than the slots on the right.
+For the last line of text, it should be left-justified, and no extra space is inserted between words.
+
+'''
+
+def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
+    res = []
+    
+    
+    rest = maxWidth 
+    temp = ""
+    i = 0
+    
+    for i in range(len(words)):
+        if rest - (len(words[i])) >= 0:
+            rest = rest - (len(words[i]))
+            temp += words[i] + " "
+            rest -= 1
+            if len(words) - 1 == i:
+                res.append(temp)
+        else:
+            res.append(temp)
+            temp = ""
+            temp += words[i] + " "
+            rest = maxWidth - len(temp)          
+            if len(words) - 1 == i:
+                res.append(temp)
+                
+    final = []
+    for i in range(len(res)):
+        remaining = (maxWidth - len(res[i].strip()))
+        arra = res[i].strip().split()
+        remaining += (len(arra) - 1) 
+        if len(arra) > 1:
+            if i == len(res) -1 :
+                remaining = maxWidth - len(res[i].strip()) 
+                words = res[i].strip() + ((remaining) * " ")
+                final.append(words)
+            else:
+                temp = arra[:-1].copy()
+                for i in range(remaining):
+                    temp[i % (len(temp))] += " "
+                temp.append(arra[-1])
+                arra = temp[:]
+                final.append("".join(arra))
+
+        else:
+            for i in range(remaining):
+                arra[i % (len(arra))] += " "
+            final.append("".join(arra))
+
+            
+    return final
