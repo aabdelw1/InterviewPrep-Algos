@@ -187,3 +187,30 @@ def subsets(self, nums: List[int]) -> List[List[int]]:
     
     dfs(0)
     return res
+
+
+'''
+Walls and Gates
+
+You are given an m x n grid rooms initialized with these three possible values.
+
+-1 A wall or an obstacle.
+0 A gate.
+INF Infinity means an empty room. We use the value 231 - 1 = 2147483647 to represent INF as you may assume that the distance to a gate is less than 2147483647.
+Fill each empty room with the distance to its nearest gate. If it is impossible to reach a gate, it should be filled with INF.
+
+'''
+def wallsAndGates(self, rooms: List[List[int]]) -> None:
+    def dfs(i, j, dist):
+        if i < 0 or j < 0 or i >= len(rooms) or j >= len(rooms[0]) or (dist != 0 and rooms[i][j] <= dist):
+            return
+        rooms[i][j] = dist
+        dfs(i+1, j, dist+1)
+        dfs(i-1, j, dist+1)
+        dfs(i, j+1, dist+1)
+        dfs(i, j-1, dist+1)
+ 
+    for i in range(len(rooms)):
+            for j in range(len(rooms[0])):
+                if rooms[i][j] == 0:
+                    dfs(i, j, 0)

@@ -169,3 +169,21 @@ def bstFromPreorder(self, preorder: List[int]) -> Optional[TreeNode]:
     n = len(preorder)
     
     return helper()
+
+
+'''
+Lowest Common Ancestor of a Binary Tree III
+
+Given two nodes of a binary tree p and q, return their lowest common ancestor (LCA).
+Each node will have a reference to its parent node. The definition for Node is below:
+
+'''
+
+def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
+    
+    p1, p2 = p, q
+    while p1 != p2:
+        p1 = p1.parent if p1.parent else q
+        p2 = p2.parent if p2.parent else p
+        
+    return p1
