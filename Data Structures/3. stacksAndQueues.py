@@ -207,7 +207,7 @@ def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
     while q:
         qlen = len(q)
         level = []
-        for i in range(qlen):
+        for _ in range(qlen):
             node = q.popleft()
             if node:
                 level.append(node.val)

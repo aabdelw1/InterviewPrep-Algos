@@ -187,3 +187,70 @@ def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
         p2 = p2.parent if p2.parent else p
         
     return p1
+
+
+''' 
+Reconstruct Iternary
+
+You are given a list of airline tickets where tickets[i] = [fromi, toi] represent the departure and the arrival airports of one flight. Reconstruct the itinerary in order and return it.
+
+All of the tickets belong to a man who departs from "JFK", thus, the itinerary must begin with "JFK". If there are multiple valid itineraries, you should return the itinerary that has the smallest lexical order when read as a single string.
+
+For example, the itinerary ["JFK", "LGA"] has a smaller lexical order than ["JFK", "LGB"].
+You may assume all tickets form at least one valid itinerary. You must use all the tickets once and only once.'''
+
+def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+
+    adj = { src: [] for src, dest in tickets }
+    tickets.sort()
+
+    for src, dest in tickets:
+        adj[src].append(dest)
+
+    res = ["JFK"]
+
+    def dfs(src):
+        if len(res) == len(tickets) + 1:
+            return True
+        if src not in adj:
+            return False
+        
+        temp = list(adj[src])
+
+        for i, v in enumerate(temp):
+            adj[src].pop(i)
+            res.append(v)
+            if dfs(v): return True
+            adj[src].insert(i, v)
+            res.pop()
+        return False
+
+    dfs('JFK')
+    return res
+
+
+'''
+All Paths from source to destination
+
+'''
+
+def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+
+    target = len(graph) - 1
+    results = []
+
+    def backtrack(curr_node, path):
+        # if we reach the target, no need to explore further.
+        if curr_node == target:
+            results.append(list(path))
+            return
+        # explore the neighbor nodes one after another.
+        for next_node in graph[curr_node]:
+            path.append(next_node)
+            backtrack(next_node, path)
+            path.pop()
+    # kick of the backtracking, starting from the source node (0).
+    path = [0]
+    backtrack(0, path)
+
+    return results

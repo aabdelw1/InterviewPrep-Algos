@@ -1,3 +1,8 @@
+#Chapter 6 Problems: 1,2,4
+#Completed:
+
+
+
 '''
 6. Zigzag Conversion
 

@@ -8,7 +8,7 @@ import random
 import collections
 
 '''
-1. Your input is an array of integers, and you have to reorder its entreis to that the even 
+0. Your input is an array of integers, and you have to reorder its entreis to that the even 
 entries appear first. This is easy if you use O(n) space, where n is the length of the 
 array. However, you are required to solve it without allocating additional storage'''
 
@@ -24,7 +24,7 @@ def even_odd(A: List[int]) -> None:
 # print(even_odd([1,4,3,6,7,2,6]))
 
 ''' 
-2. Write a program that takes an array A and an index i into A, and rearranges the elements
+1. Write a program that takes an array A and an index i into A, and rearranges the elements
 such that all elements less than A[i] appear first, followed by lelements equal to the
 pivot, followed by elements greater than the pivot '''
 
@@ -176,6 +176,7 @@ def removeDuplicates(self, nums: List[int]) -> int:
 You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
 Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.'''
 
+#O(n) time O(1) space
 def maxProfit(self, prices: List[int]) -> int:
   
     min_price_so_far = float('inf')
@@ -195,6 +196,7 @@ Output: [3, 7, 11]
 Note that there is no fixed output. It might vary for each run.
 '''
 
+#O(k) time and O(1) space
 def random_sampling(k: int, A: List[int]) -> List[int]:
   for i in range(k):
     #generate random number from i to length of A
